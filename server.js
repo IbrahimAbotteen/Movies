@@ -12,14 +12,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-/* app.use(
+app.use(
   session({
     key: process.env.SECRET_KEY,
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: true,
   }),
-); */
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -34,10 +34,10 @@ app.get('/',(req,res)=>{
     res.send('hello World')
 });
 
-// const authRoutes = require('./routes/auth-routes');
-// app.use('/api/auth', authRoutes);
-// const movieRoutes = require('./routes/movie-routes');
-// app.use('/api/movies', movieRoutes);
+ const authRoutes = require('./routes/auth-routes');
+ app.use('/api/auth', authRoutes);
+ const movieRoutes = require('./routes/movie-routes');
+ app.use('/api/movies', movieRoutes);
 
 app.use('*', (req, res) => {
     res.status(400).json({

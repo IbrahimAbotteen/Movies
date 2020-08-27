@@ -12,6 +12,7 @@ function setDatabase() {
             database: 'movies_p3_dev',
             port: 5432,
             host: 'localhost',
+
         })
     }
     else if (process.env.NODE_ENV === 'production') {
