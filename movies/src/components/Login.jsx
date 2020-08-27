@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-
-
 class Login extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             username: '',
             password: '',
@@ -24,7 +22,7 @@ class Login extends Component {
             <div>
                 <form onSubmit={(e) => this.props.handleLoginSubmit(e, this.state)}>
                     <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.handleInputChange} />
-                    <input type="text" name="password" placeholder="password" value={this.state.password} onChange={this.handleInputChange} />
+                    <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handleInputChange} />
                     <input type="submit" value="Login" />
                 </form>
             </div>
