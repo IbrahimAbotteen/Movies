@@ -10,16 +10,37 @@ class MovieList extends Component{
         }
     }
 
+    getAllMovies() {
+        fetch('/api/movies', { credentials: 'include' })
+        .then(res => res.json())
+        .then(res => {
+          this.setState({
+            movies: res.data.movies,
+            dataLoaded: true,
+          })
+        }).catch(err => console.log(err));
+      }
+
     componentDidMount(){
-        fetch('/api/movies',{credentials:"include"})
-        .then(res=>res.json())
-        .then(res=>{
-            this.setState({
-                movies:res.data.movies,
-                dataloaded:true,
-            }).catch(err => console.log(err));
-        })
+        this.getAllMovies();
     }
+
+    handleFormSubmit(method, e, data, id) {
+        e.preventDefault()
+        fetch(`/api/movies/${id || ''}`, {
+          method: method,
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            this.getAllMovies();
+        }).catch(err => console.log(err));
+      }
     renderMovieList(){
         if(this.state.dataloaded){
             return this.state.movies.map(movie=>{
