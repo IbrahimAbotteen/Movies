@@ -61,4 +61,15 @@ movieController.update = (req, res, next) => {
     .catch(next);
 };
 
+movieController.delete = (req, res, next) => {
+    Movie.getById(req.params.id)
+    .then((movie) => movie.delete())
+    .then(() => {
+        res.json({
+            message: 'Movie successfully deleted!',
+        });
+    })
+    .catch(next);
+}
+
 module.exports = movieController;
