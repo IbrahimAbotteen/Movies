@@ -13,11 +13,17 @@ class Movie {
 
     static getAll() {
         return db
-        .manyOrNone('SELECT * FROM movies WHERE id = $1', [id])
-        .then((movie) => {
-            if (movie) return new this(movie);
-            throw new Error(`Movie ${id} not found`);
-        });
+            .manyOrNone('SELECT * FROM movies ORDER BY id ASC')
+            .then((movies) => movies.map((movie) => new this (movie)));
+    }
+    
+    static getById(id) {
+        return db
+            .oneOrNone('SELECT * FROM movies WHERE id = $1', [id])
+            .then((movie) => {
+                if (movie) return new this(movie);
+                throw new Error(`Movie ${id} not found`);
+            });
     }
 
 }
