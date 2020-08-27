@@ -1,11 +1,11 @@
-const express=require('express');
-const logger=require('morgan');
-const bodyParser=require('body-parser');
-const cookieParser=require('cookie-parser');
-const session=require('express-session');
-const passport=require('passport');
+const express = require('express');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport');
 
-const app=express();
+const app = express();
 require('dotenv').config();
 
 app.use(logger('dev'));
@@ -30,8 +30,8 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
 
-app.get('/',(req,res)=>{
-    res.send('hello World')
+app.get('/', (req, res) => {
+  res.send('hello World')
 });
 
 // const authRoutes = require('./routes/auth-routes');
@@ -40,15 +40,15 @@ app.get('/',(req,res)=>{
 // app.use('/api/movies', movieRoutes);
 
 app.use('*', (req, res) => {
-    res.status(400).json({
-      message: 'Not found!',
-    });
+  res.status(400).json({
+    message: 'Not found!',
   });
-  
-  app.use((err, req, res, next) => {
-    console.log(err);
-    res.status(500).json({
-      error: err,
-      message: err.message,
-    });
+});
+
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).json({
+    error: err,
+    message: err.message,
   });
+});
