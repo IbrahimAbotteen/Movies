@@ -21,7 +21,9 @@ class MovieList extends Component{
     }
     renderMovieList(){
         if(this.state.dataloaded){
-            return <h1>Our Movie List will go here</h1>
+            return this.state.movies.map(movie=>{
+                return <Movie key={movie.id} movie={movie} />
+            })
         }
         else {
             return <p>loading.... </p>
