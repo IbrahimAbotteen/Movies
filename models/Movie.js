@@ -37,6 +37,22 @@ class Movie {
                 .then((movie) => Object.assign(this, movie));
     }
 
+    update(changes) {
+        Object.assign(this, changes);
+        return db.one(
+            `UPDATE movies SET
+            title = $/title/,
+            description = $/description/,
+            genre = $/genre/
+            WHERE id = $/id/
+            RETURNING *`, this)
+            .then((movie) => Object.assign(this, movie));
+    }
+
+    delete() {
+        return db.none('DELETE FROM movies WHERE id = $1', this.id);
+    }
+
 }
 
 module.exports = Movie;
