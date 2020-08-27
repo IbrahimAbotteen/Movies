@@ -24,6 +24,23 @@ movieController.show = (req, res, next) => {
         });
     })
     .catch(next);
-}
+};
+
+movieController.create = (req, res, next) => {
+    new Movie({
+        title: req.body.title,
+        description: req.body.description,
+        genre: req.body.genre,
+        user_id: req.user.id,
+    })
+        .save()
+        .then((movie) => {
+            res.json({
+                message: 'Movie added successfully!',
+                data: { movie },
+            });
+        })
+        .catch(next);
+};
 
 module.exports = movieController;

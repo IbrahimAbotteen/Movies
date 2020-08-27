@@ -32,7 +32,9 @@ class Movie {
                 `INSERT INTO movies
                 (title, description, genre, user_id)
                 VALUES ($/title/, $/description/, $/genre/, $/user_id/)
-            )
+                RETURNING *`,
+                this)
+                .then((movie) => Object.assign(this, movie));
     }
 
 }
