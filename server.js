@@ -34,10 +34,10 @@ app.get('/',(req,res)=>{
     res.send('hello World')
 });
 
-// const authRoutes = require('./routes/auth-routes');
-// app.use('/api/auth', authRoutes);
-// const movieRoutes = require('./routes/movie-routes');
-// app.use('/api/movies', movieRoutes);
+//const authRoutes = require('./routes/auth-routes');
+//app.use('/api/auth', authRoutes);
+const movieRoutes = require('./routes/movie-routes');
+app.use('/api/movies', movieRoutes);
 
 app.use('*', (req, res) => {
     res.status(400).json({

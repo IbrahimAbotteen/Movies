@@ -26,6 +26,15 @@ class Movie {
             });
     }
 
+    save() {
+        return db
+            .one(
+                `INSERT INTO movies
+                (title, description, genre, user_id)
+                VALUES ($/title/, $/description/, $/genre/, $/user_id/)
+            )
+    }
+
 }
 
-module.exports = movieController;
+module.exports = Movie;
