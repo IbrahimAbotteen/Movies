@@ -14,3 +14,5 @@ movieController.index = (req, res, next) => {
     })
     .catch(next);
 };
+
+module.exports = movieController;

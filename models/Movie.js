@@ -21,3 +21,5 @@ class Movie {
     }
 
 }
+
+module.exports = movieController;
