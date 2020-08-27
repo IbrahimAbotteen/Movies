@@ -43,4 +43,22 @@ movieController.create = (req, res, next) => {
         .catch(next);
 };
 
+movieController.update = (req, res, next) => {
+    Movie.getById(req.params.id)
+    .then((movie) =>
+    movie.update({
+        title: req.body.title,
+        description: req.body.description,
+        genre: req.body.genre,
+    })
+    )
+    .then((movie) => {
+        res.json({
+            message: 'Movie updated successfully!',
+            data: { movie },
+        });
+    })
+    .catch(next);
+};
+
 module.exports = movieController;
