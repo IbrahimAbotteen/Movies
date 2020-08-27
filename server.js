@@ -34,8 +34,8 @@ app.get('/', (req, res) => {
   res.send('hello World')
 });
 
-// const authRoutes = require('./routes/auth-routes');
-// app.use('/api/auth', authRoutes);
+const authRoutes = require('./routes/auth-routes');
+app.use('/api/auth', authRoutes);
 // const movieRoutes = require('./routes/movie-routes');
 // app.use('/api/movies', movieRoutes);
 
