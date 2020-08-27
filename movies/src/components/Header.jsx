@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-const Header = () => {
+const Header = (props) => {
     return (
         <nav>
             <Link to='/'>Home</Link>
@@ -8,6 +8,7 @@ const Header = () => {
             <Link to='/register'>Register</Link>
             <Link to='/dashboard'>Dashboard</Link>
             <Link to='/movies'>Movies</Link>
+            <button><span className="logout" onClick={props.logout}>Logout</span></button>
         </nav>
     )
 }
