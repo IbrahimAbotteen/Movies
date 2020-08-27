@@ -1,4 +1,5 @@
-import React,{Component} from React
+import React,{Component} from 'react'
+import Movie from "./Movie"
 
 class MovieList extends Component{
     constructor(){
