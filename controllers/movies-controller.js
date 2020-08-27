@@ -15,4 +15,15 @@ movieController.index = (req, res, next) => {
     .catch(next);
 };
 
+movieController.show = (req, res, next) => {
+    Movie.getById(req.params.id)
+    .then((movie) => {
+        res.json({
+            message: 'ok',
+            data: { movie },
+        });
+    })
+    .catch(next);
+}
+
 module.exports = movieController;
